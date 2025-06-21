@@ -37,9 +37,10 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
         search(&config.query, &contents)
     };
     
-    for line in search(&config.query, &contents) {
+    for line in results {
         println!("{line}");
     }
+    
 
     Ok(())
 }
@@ -93,7 +94,7 @@ safe, fast, productive.
 Pick three.
 Trust me.";
         assert_eq!(
-            vec!["Rust:,", "Trust me."], search_case_insensitive(query, contents)
+            vec!["Rust:", "Trust me."], search_case_insensitive(query, contents)
         );
     }
 }
