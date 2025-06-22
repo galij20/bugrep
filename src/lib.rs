@@ -27,6 +27,15 @@ impl Config {
     }
 }
 
+/// Grabs lines from the file containing passed string  
+///  # Examples
+///
+///  ```
+///  let config.file_path = "poem.txt";
+///  let config.query = "Hope";
+///
+///  assert_eq!(""Hope" is the thing with feathers -", run(config));
+///  ```
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
     
