@@ -1,3 +1,6 @@
+//! # bugrep
+//! a collection of utilities to return lines containing passed queries as well as print them to
+//! standard output.
 #![allow(unused_variables)]
 use std::error::Error;
 use std::fs;
@@ -27,7 +30,7 @@ impl Config {
     }
 }
 
-/// Grabs lines from the file containing passed string  
+/// Prints out the lines containing the query 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
     
@@ -46,6 +49,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+/// Returns a vector with the lines containing the passed query  
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let mut results = Vec::new();
 
@@ -56,7 +60,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     }
     results
 }
-
+/// Returns the lines containing the passed query regardless of the casing 
 pub fn search_case_insensitive<'a>(
     query: &str,
     contents: &'a str,
